@@ -6,11 +6,7 @@ module FitnessTrack
     class Activity
       # Creates a new gpx activity
       def self.create(node, gpx)
-        #if node.at_xpath('@IsRoute').nil?
           self.new(node, gpx)
-        #else
-        #  Route.new(node, nvo)
-        #end
       end
 
       attr_reader :node
@@ -37,29 +33,6 @@ module FitnessTrack
       def clear_cache!
         @node = nil
         @gpx = nil
-      end
-
-
-      # The end chainage for the section
-      def end_chainage
-        @node.at_xpath('End/Chainage').content.to_f
-      end
-      def end_chainage=(value)
-        @node.at_xpath('End/Chainage').content = value
-      end
-
-      # The section start questions, as an array of Question objects.
-      # You can pass the question text into the text parameter if you're
-      # after a specific question.
-      def start_questions(text = nil)
-        questions(:start, text)
-      end
-
-      # The section end questions, as an array of Question objects
-      # You can pass the question text into the text parameter if you're
-      # after a specific question.
-      def end_questions(text = nil)
-        questions(:end, text)
       end
 
       # Returns all the laps for this activity.

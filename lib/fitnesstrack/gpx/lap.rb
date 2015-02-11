@@ -1,6 +1,5 @@
 
-require 'time'
-require 'active_support/core_ext/string/inflections.rb'
+
 require 'fitnesstrack/gpx/track_point'
 
 module FitnessTrack

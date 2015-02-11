@@ -10,17 +10,7 @@ module FitnessTrack
         !@node.xpath('./Activities').empty?
       end
 
-      # Add a duplicated Nvo::Section to this Nvo file, and return the new
-      # Section object.
-      def add(activity)
-        node = activity.node.dup
-        @node.add_child(node)
-        new_activity = Activity.new(node, self)
-        activities << new_activity
-        new_activity
-      end
-
-      # Returns true if there are no sections in the file
+      # Returns true if there are no activities in the file
       def empty?
         activities.empty?
       end

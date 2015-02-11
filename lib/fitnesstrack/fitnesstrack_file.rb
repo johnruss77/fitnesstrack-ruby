@@ -1,21 +1,25 @@
-require 'nokogiri'
+#require 'nokogiri'
 
 module FitnessTrack
   # Generic FitnessTrack file, subclassed for each file type
   class FitnessTrackFile
     attr_reader :filename, :node
 
+    attr_accessor :errors
+
     # Pass a path to a fitness tracking file file
     def initialize(path)
       @filename = path
       file = nil
-      file = open(path)  
+      file = open(path)
+      @errors = []  
       
       @document = Nokogiri::XML(file)
       @document.remove_namespaces!
       @node = @document.root
       unless self.valid?
-        raise "Unable to load file.  Is it in the correct format?"
+        self.errors << {:xml => 'invalid xml passed in'}
+        #raise "Unable to load file.  Is it in the correct format?"
       end
     end
 
@@ -24,6 +28,7 @@ module FitnessTrack
     def valid?
       false
     end
+
 
   end
 end

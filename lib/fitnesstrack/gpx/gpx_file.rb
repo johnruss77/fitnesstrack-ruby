@@ -3,21 +3,14 @@ require 'fitnesstrack/gpx/activity'
 
 module FitnessTrack
   module Gpx
-    # Top-level object representing the NVO file itself
+    # Top-level object representing the GPX file itself
     class GpxFile < FitnessTrackFile
-      # Returns true if the file appears to be a valid NVO file
+
+      attr_accessor  :activities
+
+      # Returns true if the file appears to be a valid GPX file
       def valid?
         !@node.xpath('./trk').empty?
-      end
-
-      # Add a duplicated Nvo::Section to this Nvo file, and return the new
-      # Section object.
-      def add(activity)
-        node = activity.node.dup
-        @node.add_child(node)
-        new_activity = Activity.new(node, self)
-        activities << new_activity
-        new_activity
       end
 
       # Returns true if there are no sections in the file
