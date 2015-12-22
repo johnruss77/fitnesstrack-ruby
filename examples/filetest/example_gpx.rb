@@ -35,6 +35,8 @@ module Tool
           #puts "lap info: #{lap.info}"
     
 =begin
+		#track point functionality to be added here
+
           track_points = lap.track_points
 
           track_points.each do |tk|
